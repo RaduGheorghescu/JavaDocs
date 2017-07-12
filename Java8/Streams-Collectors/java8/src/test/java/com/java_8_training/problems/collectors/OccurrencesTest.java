@@ -35,8 +35,9 @@ public class OccurrencesTest {
         List<String> sentences = Arrays.asList("Hello everyone!", "Java 8 is here!");
 
         //TODO #C9
-        Map<String, Long> occ = new HashMap<>();
-        occ = sentences.stream().map(s -> s.split("")).flatMap(Arrays::stream).collect(groupingBy(identity(),counting()));
+        Map<String, Long> occ = sentences.stream().map(s -> {
+            return s.split("");
+        }).flatMap(Arrays::stream).collect(groupingBy(identity(),counting()));
 
         assertEquals(2, (long) occ.get("l"));
         assertEquals(4, (long) occ.get(" "));
